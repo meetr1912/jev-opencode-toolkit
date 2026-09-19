@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: lint + tests + build (python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Test (offline only, no API key)
+        run: uv run pytest -q
+
+      - name: Build package
+        run: uv build
+
+  bench:
+    name: offline benchmarks + calibration lock check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Run offline benchmarks and accuracy report
+        run: uv run python benchmarks/bench.py --offline --out results
+
+      - name: Check the committed calibration lock
+        run: uv run jev-lock check --lock calibration/decisions.lock.json --questions examples/pinned_questions.json --samples calibration/samples.json
+
+      - name: Show results
+        run: cat results/RESULTS.md
+
+      - name: Upload results
+        uses: actions/upload-artifact@v5
+        with:
+          name: results-${{ github.sha }}
+          path: results/
+          if-no-files-found: error

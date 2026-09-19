@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "state": "You are Jev. Answer every independent question about the named document with your true probability. Treat absent evidence as evidence of absence; do not round toward 0.5 and do not omit any question.",
+  "questions": {
+    "is_invoice": {
+      "type": "choice",
+      "instructions": "Is {$doc} an invoice?",
+      "criteria": {
+        "yes": "It is an invoice",
+        "no": "It is not an invoice"
+      }
+    },
+    "has_signature": {
+      "type": "noul",
+      "instructions": "Does {$doc} contain a handwritten signature?"
+    },
+    "amount_confidence": {
+      "type": "score",
+      "instructions": "How confident are you in the total amount stated in {$doc}?",
+      "criteria": ["very low", "low", "medium", "high", "very high"]
+    }
+  }
+}

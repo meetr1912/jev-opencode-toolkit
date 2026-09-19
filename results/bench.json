@@ -1,0 +1,127 @@
+{
+  "accuracy": {
+    "corrupt": {
+      "error_type": "JevError",
+      "message": "noul_00: noul answer missing or not a probability in [0, 1]",
+      "raised": true
+    },
+    "label": "offline stub (simulated 0 ms; exact oracle vs overconfident miscalibrated)",
+    "miscalibrated": {
+      "agreement": 1.0,
+      "binary_events": 20,
+      "brier": 0.10125,
+      "categorical_events": 40,
+      "ece": 0.225,
+      "events": 60,
+      "log_loss": 0.298919,
+      "multiclass_brier": 0.013763
+    },
+    "miscalibrated_strictly_worse": true,
+    "oracle": {
+      "agreement": 1.0,
+      "binary_events": 20,
+      "brier": 0.0,
+      "categorical_events": 40,
+      "ece": 0.0,
+      "events": 60,
+      "log_loss": 0.0,
+      "multiclass_brier": 0.0
+    },
+    "oracle_is_reference": true
+  },
+  "banner": "OFFLINE / DETERMINISTIC: no TYPESAFE_API_KEY, no network. Every number below comes from the jev_toolkit offline stub through the strict-validation ask path.",
+  "calibration": {
+    "cli_check": {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "OK: calibration lock verified"
+    },
+    "created": "2026-09-18T00:00:00Z",
+    "direct_problems": [],
+    "label": "committed samples + lock, verified by the jev-lock CLI",
+    "lock": "calibration/decisions.lock.json",
+    "metrics": {
+      "accuracy": 0.583333,
+      "brier": 0.105578,
+      "ece": 0.214444,
+      "log_loss": 0.369756,
+      "n": 36
+    },
+    "questions": "examples/pinned_questions.json",
+    "questions_sha256": "b92c7ad2e403a087a9a847cbb8b6b9a792f3f71fd6017824d7c6c634efa729d3",
+    "samples": "calibration/samples.json",
+    "target_accuracy": 0.9,
+    "teeth": {
+      "tampered_metric": {
+        "exit_code": 1,
+        "stderr": "FAIL: metric drift: brier lock=0.605578 actual=0.10557777777777778"
+      },
+      "tampered_questions": {
+        "exit_code": 1,
+        "stderr": "FAIL: questions hash drift: lock=b92c7ad2e403a087a9a847cbb8b6b9a792f3f71fd6017824d7c6c634efa729d3 file=20418628602660bd58e39277a94126b02cccc9f1fca15165bc77cb8b82f94a95"
+      }
+    },
+    "thresholds": {
+      "amount_confidence": {
+        "accuracy": 1.0,
+        "coverage": 0.5833333333333334,
+        "n": 12,
+        "threshold": 0.6
+      },
+      "has_signature": {
+        "accuracy": 1.0,
+        "coverage": 0.5,
+        "n": 12,
+        "threshold": 0.7
+      },
+      "is_invoice": {
+        "accuracy": 1.0,
+        "coverage": 0.5833333333333334,
+        "n": 12,
+        "threshold": 0.65
+      }
+    }
+  },
+  "command": "uv run --no-sync python benchmarks/bench.py --offline --out results",
+  "concurrency": 8,
+  "offline": true,
+  "parallelism": {
+    "concurrency": 8,
+    "groups": 8,
+    "label": "offline stub (simulated 50 ms round-trip per group)",
+    "latency_s": 0.05,
+    "order_preserved": true,
+    "parallel": {
+      "requests": 8,
+      "total_s": 0.05
+    },
+    "questions": 80,
+    "repeats": 3,
+    "serial": {
+      "requests": 8,
+      "total_s": 0.4
+    },
+    "speedup": 7.4
+  },
+  "python": "3.12.14",
+  "questions": 80,
+  "speed": {
+    "batched": {
+      "ms_per_question": 0.2,
+      "requests": 1,
+      "total_s": 0.02
+    },
+    "call_count_ratio": "80:1",
+    "label": "offline stub (simulated 20 ms round-trip)",
+    "latency_s": 0.02,
+    "questions": 80,
+    "repeats": 3,
+    "serial": {
+      "ms_per_question": 20.0,
+      "requests": 80,
+      "total_s": 1.6
+    },
+    "timing_ratio": 78.2,
+    "timing_ratio_raw": 78.22
+  }
+}

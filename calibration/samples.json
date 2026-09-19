@@ -1,0 +1,218 @@
+[
+  {
+    "qid": "is_invoice",
+    "probability": 0.95,
+    "gate": 0.95,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.9,
+    "gate": 0.9,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.85,
+    "gate": 0.85,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.8,
+    "gate": 0.8,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.75,
+    "gate": 0.75,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.7,
+    "gate": 0.7,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.65,
+    "gate": 0.65,
+    "correct": true
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.55,
+    "gate": 0.55,
+    "correct": false
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.45,
+    "gate": 0.45,
+    "correct": false
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.35,
+    "gate": 0.35,
+    "correct": false
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.25,
+    "gate": 0.25,
+    "correct": false
+  },
+  {
+    "qid": "is_invoice",
+    "probability": 0.15,
+    "gate": 0.15,
+    "correct": false
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.92,
+    "gate": 0.9,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.88,
+    "gate": 0.9,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.83,
+    "gate": 0.8,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.78,
+    "gate": 0.8,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.72,
+    "gate": 0.7,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.68,
+    "gate": 0.7,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.6,
+    "gate": 0.6,
+    "correct": false
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.58,
+    "gate": 0.6,
+    "correct": true
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.42,
+    "gate": 0.4,
+    "correct": false
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.38,
+    "gate": 0.4,
+    "correct": false
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.28,
+    "gate": 0.3,
+    "correct": false
+  },
+  {
+    "qid": "has_signature",
+    "probability": 0.22,
+    "gate": 0.2,
+    "correct": false
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.9,
+    "gate": 0.9,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.82,
+    "gate": 0.8,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.76,
+    "gate": 0.8,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.71,
+    "gate": 0.7,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.66,
+    "gate": 0.7,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.62,
+    "gate": 0.6,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.57,
+    "gate": 0.6,
+    "correct": true
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.53,
+    "gate": 0.5,
+    "correct": false
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.47,
+    "gate": 0.5,
+    "correct": false
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.41,
+    "gate": 0.4,
+    "correct": false
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.33,
+    "gate": 0.3,
+    "correct": false
+  },
+  {
+    "qid": "amount_confidence",
+    "probability": 0.26,
+    "gate": 0.3,
+    "correct": false
+  }
+]
