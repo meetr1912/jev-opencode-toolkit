@@ -678,7 +678,7 @@ def test_mcp_server_end_to_end(tmp_path):
     assert responses[1]["result"]["protocolVersion"] == "2024-11-05"
 
     tools = responses[2]["result"]["tools"]
-    assert [tool["name"] for tool in tools] == ["jev_ask", "jev_ask_file", "jev_calibrate"]
+    assert [tool["name"] for tool in tools] == ["ask", "ask_file", "calibrate"]
 
     # Unknown tool -> tool-level error result, not a transport crash.
     assert responses[3]["result"].get("isError") is True

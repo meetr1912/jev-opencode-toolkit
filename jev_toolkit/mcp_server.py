@@ -1,8 +1,10 @@
 """Minimal MCP (Model Context Protocol) server over stdio for the Jev toolkit.
 
 This is a *thin* transport shim: it speaks newline-delimited JSON-RPC 2.0 on
-stdin/stdout and exposes exactly three tools (``jev_ask``, ``jev_ask_file``,
-``jev_calibrate``) so opencode can drive the toolkit. It deliberately uses only
+stdin/stdout and exposes exactly three tools (``ask``, ``ask_file``,
+``calibrate``) so opencode can drive the toolkit. opencode prefixes MCP tool
+names with the server name, so wiring this as the ``jev`` server surfaces them
+as ``jev_ask``, ``jev_ask_file`` and ``jev_calibrate``. It deliberately uses only
 the standard library — no ``mcp`` package, no HTTP server, no web UI — so the
 runtime dependency surface stays exactly what ``jev`` itself needs.
 
@@ -141,7 +143,7 @@ _BATCH_SIZE_SCHEMA: dict[str, Any] = {
 def _tool_definitions() -> list[dict[str, Any]]:
     return [
         {
-            "name": "jev_ask",
+            "name": "ask",
             "description": "Send many independent typed questions to TypeSafe Jev in ONE batched request.",
             "inputSchema": {
                 "type": "object",
@@ -160,7 +162,7 @@ def _tool_definitions() -> list[dict[str, Any]]:
             },
         },
         {
-            "name": "jev_ask_file",
+            "name": "ask_file",
             "description": "Bind facts into a pinned question file and ask the whole rubric.",
             "inputSchema": {
                 "type": "object",
@@ -182,7 +184,7 @@ def _tool_definitions() -> list[dict[str, Any]]:
             },
         },
         {
-            "name": "jev_calibrate",
+            "name": "calibrate",
             "description": "Check or fit the calibration lock.",
             "inputSchema": {
                 "type": "object",
@@ -207,6 +209,11 @@ def _call_tool(params: dict[str, Any]) -> dict[str, Any]:
         arguments = {}
 
     handlers: dict[str, Callable[[dict[str, Any]], str]] = {
+        # Exposed names (opencode prefixes the server name -> jev_ask, ...).
+        "ask": _tool_jev_ask,
+        "ask_file": _tool_jev_ask_file,
+        "calibrate": _tool_jev_calibrate,
+        # Legacy aliases kept so existing callers/configs keep working.
         "jev_ask": _tool_jev_ask,
         "jev_ask_file": _tool_jev_ask_file,
         "jev_calibrate": _tool_jev_calibrate,

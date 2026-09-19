@@ -46,7 +46,7 @@ Edit global `~/.config/opencode/opencode.jsonc`:
 }
 ```
 
-opencode is **not** hot-reloaded — restart it after editing. The server inherits the shell environment, so `export TYPESAFE_API_KEY=...` before launching opencode; do **not** put the key in the config. Tool names/descriptions are defined server-side in `mcp_server.py` (`_tool_definitions()`), so the toolkit ships **no plugin** and no `tool.definition` override. (If you ever want different descriptions, a small plugin `tool.definition` hook could do it; this toolkit deliberately ships none.)
+opencode is **not** hot-reloaded — restart it after editing. The server inherits the shell environment, so `export TYPESAFE_API_KEY=...` before launching opencode; do **not** put the key in the config. Some MCP clients filter the environment before spawning servers; if your key does not reach the server, add it explicitly via the per-server `"environment"` key (the toolkit still never hardcodes it). Because opencode prefixes MCP tool names with the server name, the three tools appear as **`jev_ask`**, **`jev_ask_file`**, **`jev_calibrate`**. Tool names/descriptions are defined server-side in `mcp_server.py` (`_tool_definitions()`), so the toolkit ships **no plugin** and no `tool.definition` override.
 
 ## Capabilities
 
@@ -55,7 +55,7 @@ opencode is **not** hot-reloaded — restart it after editing. The server inheri
 - **Cache** — keyed on `hash(state + questions + model)`; in-memory by default, optional on-disk (`JEV_CACHE_DIR`).
 - **Pinned rubrics** — JSON question files with `{$bind}` slots, facts only, criteria fixed server-side.
 - **Calibration lock** — `jev-lock fit` writes `decisions.lock.json`; `jev-lock check` fails CI on drift or missing calibration.
-- **MCP server** — thin stdio JSON-RPC exposing exactly 3 tools: `jev_ask`, `jev_ask_file`, `jev_calibrate`.
+- **MCP server** — thin stdio JSON-RPC exposing exactly 3 tools: `ask`, `ask_file`, `calibrate` (surfaced by opencode as `jev_ask`, `jev_ask_file`, `jev_calibrate` because opencode prefixes MCP tool names with the server name).
 - **No plugin.**
 
 ## CLI
